@@ -61,7 +61,7 @@ export function Form() {
         <>
             <div className="flex flex-col justify-center items-center space-y-3 mb-5">
                 <h2 className="text-xl md:text-3xl font-bold">Seguimiento de Pacientes</h2>
-                <p className="md:text-lg">Añade tus Pacientes y <span className="font-semibold text-orange-600">Administralos</span></p>
+                <p className="text-sm md:text-lg">Añade tus Pacientes y <span className="font-semibold text-orange-600">Administralos</span></p>
             </div>
             <form onSubmit={handleSubmit} className="p-4 rounded-xl bg-white shadow-xl mb-5">
                 <div>

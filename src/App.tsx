@@ -1,9 +1,12 @@
 import { Form } from "./components/Form"
 import PatientFollowUp from "./components/PatientFollowUp";
-import { usePatient } from "./hooks/usePatient"
+import { usePatient } from "./hooks/usePatient";
 
 function App() {
 
+  const {state} = usePatient();
+
+  localStorage.setItem("patients",JSON.stringify(state.patients))
 
   return (
     <>
@@ -14,7 +17,7 @@ function App() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 px-2">
+      <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 md:gap-10 px-2">
         <div>
           <Form />
         </div>
