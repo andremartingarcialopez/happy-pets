@@ -5,9 +5,9 @@ function App() {
   return (
     <>
       <header className="p-8">
-        <div className="mx-auto max-w-5xl flex flex-col space-y-2 justify-center items-center md:mt-20 md:mb-10">
+        <div className="mx-auto max-w-5xl flex flex-col space-y-2 justify-center items-center md:mt-3 md:mb-10">
           <h1 className="text-2xl md:text-5xl font-bold">Happy :<span className="text-orange-600">) Pet</span></h1>
-          <p className="text-lg">Con el objetivo de ver a los animales <span className="text-orange-600 font-semibold">Felices</span></p>
+          <p className="text-sm mt-3">Con el objetivo de ver a los animales <span className="text-orange-600 font-semibold">Felices</span></p>
         </div>
       </header>
 
