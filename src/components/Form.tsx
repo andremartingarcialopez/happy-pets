@@ -34,6 +34,11 @@ export function Form() {
         setPatient({ ...patient, [e.target.id]: e.target.value })
     }
 
+    function validateEmail(email: string) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email)
+    }
+
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
@@ -51,8 +56,16 @@ export function Form() {
             return
         }
 
+        if (!validateEmail(patient.email)) {
+            setError("Email no valido");
+            setTimeout(() => {
+                setError("")
+            }, 3000);
+            return
+        }
+
         if (state.idEdit) {
-            dispatch({type: "edit-patient", payload: {patient: patient}})
+            dispatch({ type: "edit-patient", payload: { patient: patient } })
         } else {
             dispatch({ type: "add-patient", payload: { patient: patient } })
         }
@@ -107,7 +120,7 @@ export function Form() {
 
                 <div>
                     <label htmlFor="date" className="font-semibold">Fecha:</label>
-                    <input type="date" id="date" className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" value={patient.date} onChange={handleChange} />
+                    <input type="datetime-local" id="date" className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" value={patient.date} onChange={handleChange} />
                 </div>
 
                 <div>

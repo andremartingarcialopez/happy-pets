@@ -1,5 +1,6 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
 import { usePatient } from "../hooks/usePatient"
+import  { formatDateTime } from "../helpers/helpers";
 
 export default function PatientFollowUp() {
 
@@ -15,7 +16,9 @@ export default function PatientFollowUp() {
             {state.patients.length > 0 &&
                 <div className="p-5 bg-white rounded-lg shadow mb-3">
                     <h2 className="text-orange-600 font-bold text-2xl mb-3 border-b-2">Tus Pacientes</h2>
-                    {state.patients.map(function (patient) {
+                    {[...state.patients]
+                    .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)))
+                    .map(function (patient) {
                         return (
 
                             <div key={patient.id} className="py-1 border-b-2 border-b-slate-700 mb-3 flex flex-col md:flex-row md:justify-evenly md:items-center">
@@ -26,7 +29,7 @@ export default function PatientFollowUp() {
                                     <p className="font-semibold">Propietario: <span className="font-normal">{patient.owner}</span></p>
                                     <p className="font-semibold">Email: <span className="font-normal">{patient.email}</span></p>
                                     <p className="font-semibold">Telefono: <span className="font-normal">{patient.phone}</span></p>
-                                    <p className="font-semibold">Fecha: <span className="font-normal">{patient.date}</span></p>
+                                    <p className="font-semibold">Fecha: <span className="font-normal text-sm">{formatDateTime(patient.date)}</span></p>
                                     <p className="font-semibold">Sintomas: <span className="font-normal">{patient.symptoms}</span></p>
                                 </div>
 
