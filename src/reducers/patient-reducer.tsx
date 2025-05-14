@@ -47,6 +47,9 @@ export function patientReducer(state: InitialStateProps = initialState, action: 
     }
 
     if (action.type == "get-id-edit") {
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         return {
             ...state,
             idEdit: action.payload.id
