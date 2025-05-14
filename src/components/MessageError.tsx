@@ -4,6 +4,6 @@ export type MessageErrorProps = {
 
 export function MessageError({ error }: MessageErrorProps) {
     return (
-        <p className="p-1 mt-3 text-center uppercase text-white font-semibold bg-red-700 rounded-lg">{error}</p>
+        <p className="p-1 mt-3 text-center uppercase text-white font-semibold text-sm bg-red-700 rounded-lg">{error}</p>
     )
 }
