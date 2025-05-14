@@ -32,7 +32,7 @@ export default function PatientFollowUp() {
 
                                 <div className="flex flex-col text-center justify-around md:h-40 md:w-40 space-y-3 my-3">
                                     
-                                    <button className="flex flex-row justify-center items-center  text-white bg-orange-600 hover:bg-orange-700 active:bg-orange-600 cursor-pointer px-3 py-0.5 rounded-lg">
+                                    <button className="flex flex-row justify-center items-center  text-white bg-orange-600 hover:bg-orange-700 active:bg-orange-600 cursor-pointer px-3 py-0.5 rounded-lg" onClick={() => dispatch({type: "get-id-edit", payload: {id: patient.id}})}>
                                         Editar
                                         <PencilIcon className="w-5 text-white"/>
                                     </button>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { Patient } from "../types/types"
 import { MessageError } from "./MessageError";
 import { usePatient } from "../hooks/usePatient";
@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 export function Form() {
 
     const [error, setError] = useState("");
-    const { dispatch } = usePatient()
+    const { state, dispatch } = usePatient()
     const [patient, setPatient] = useState<Patient>({
         namePet: "",
         typePet: "",
@@ -18,6 +18,16 @@ export function Form() {
         symptoms: "",
         id: v4()
     });
+
+    useEffect(() => {
+        if (state.idEdit) {
+            const patientEdit = state.patients.filter(function (patient) {
+                return patient.id == state.idEdit
+            })[0];
+
+            setPatient(patientEdit)
+        }
+    }, [state.idEdit])
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
 
@@ -41,7 +51,13 @@ export function Form() {
             return
         }
 
-        dispatch({ type: "add-patient", payload: { patient: patient } })
+        if (state.idEdit) {
+            dispatch({type: "edit-patient", payload: {patient: patient}})
+        } else {
+            dispatch({ type: "add-patient", payload: { patient: patient } })
+        }
+
+
 
         /* Reiniciamos el fromulario*/
         setPatient({
@@ -99,7 +115,7 @@ export function Form() {
                     <textarea className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" id="symptoms" placeholder="Sintomas de la mascota" value={patient.symptoms} onChange={handleChange}></textarea>
                 </div>
 
-                <input className="mt-3 bg-orange-600 w-full text-center text-white font-semibold uppercase p-2 rounded-lg hover:bg-orange-700 cursor-pointer active:bg-orange-600" type="submit" value={"Agregar Paciente"} />
+                <input className="mt-3 bg-orange-600 w-full text-center text-white font-semibold uppercase p-2 rounded-lg hover:bg-orange-700 cursor-pointer active:bg-orange-600" type="submit" value={state.idEdit ? "Editar Paciente" : "Agregar Paciente"} />
 
                 {error && <MessageError
                     error={error}

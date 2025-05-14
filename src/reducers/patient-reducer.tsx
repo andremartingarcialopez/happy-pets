@@ -3,11 +3,14 @@ import type { Patient } from "../types/types"
 export type PatientActions =
     { type: "add-patient", payload: { patient: Patient } } |
     { type: "clear-list" } |
-    { type: "delete-patient", payload: {id: Patient["id"]} } 
+    { type: "delete-patient", payload: { id: Patient["id"] } } |
+    { type: "get-id-edit", payload: { id: Patient["id"] } } |
+    { type: "edit-patient", payload: { patient: Patient } }
 
 
 export type InitialStateProps = {
     patients: Patient[]
+    idEdit: Patient["id"]
 }
 
 function initialPatients() {
@@ -16,11 +19,12 @@ function initialPatients() {
 }
 
 export const initialState: InitialStateProps = {
-    patients: initialPatients()
+    patients: initialPatients(),
+    idEdit: ""
 }
 
 export function patientReducer(state: InitialStateProps = initialState, action: PatientActions) {
-    
+
     if (action.type == "add-patient") {
         return {
             ...state,
@@ -39,6 +43,27 @@ export function patientReducer(state: InitialStateProps = initialState, action: 
         return {
             ...state,
             patients: state.patients.filter(patient => patient.id !== action.payload.id)
+        }
+    }
+
+    if (action.type == "get-id-edit") {
+        return {
+            ...state,
+            idEdit: action.payload.id
+        }
+    }
+
+    if (action.type == "edit-patient") {
+        return {
+            ...state,
+            patients: state.patients.map(function (patient) {
+                if (patient.id == state.idEdit) {
+                    return action.payload.patient
+                } else {
+                    return patient
+                }
+            }),
+            idEdit: ""
         }
     }
 
