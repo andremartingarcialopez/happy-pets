@@ -14,3 +14,8 @@ export function formatDateTime(fechaISO: string): string {
   // Formato local (ej: español)
   return fecha.toLocaleString('es-ES', opciones);
 }
+
+export const validPhone = (phone: string): boolean => {
+  const cleanPhone = phone.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+  return /^\d{10}$/.test(cleanPhone);
+};

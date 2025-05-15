@@ -3,6 +3,7 @@ import type { Patient } from "../types/types"
 import { MessageError } from "./MessageError";
 import { usePatient } from "../hooks/usePatient";
 import { v4 } from "uuid";
+import { validPhone } from "../helpers/helpers";
 
 export function Form() {
 
@@ -64,6 +65,15 @@ export function Form() {
             return
         }
 
+        if (!validPhone(patient.phone)) {
+             setError("Numero no valido");
+            setTimeout(() => {
+                setError("")
+            }, 3000);
+            return
+        }
+        
+
         if (state.idEdit) {
             dispatch({ type: "edit-patient", payload: { patient: patient } })
         } else {
@@ -115,7 +125,7 @@ export function Form() {
 
                 <div>
                     <label htmlFor="phone" className="font-semibold">Telefono:</label>
-                    <input type="tel" id="phone" className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" placeholder="Telefono del propietario" value={patient.phone} onChange={handleChange} />
+                    <input maxLength={10} type="tel" id="phone" className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" placeholder="Telefono del propietario" value={patient.phone} onChange={handleChange} />
                 </div>
 
                 <div>
