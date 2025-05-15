@@ -1,3 +1,4 @@
+/* Formateamos hora y fecha */
 export function formatDateTime(fechaISO: string): string {
   const fecha = new Date(fechaISO);
 
@@ -15,6 +16,7 @@ export function formatDateTime(fechaISO: string): string {
   return fecha.toLocaleString('es-ES', opciones);
 }
 
+/* Validamos numero telefonico */
 export const validPhone = (phone: string): boolean => {
   const cleanPhone = phone.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
   return /^\d{10}$/.test(cleanPhone);
