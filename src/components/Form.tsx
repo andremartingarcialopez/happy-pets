@@ -89,7 +89,7 @@ export function Form() {
     return (
         <>
             <div className="flex flex-col justify-center items-center space-y-3 mb-5">
-                <h2 className="text-xl md:text-3xl font-bold">Seguimiento de Pacientes</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Seguimiento de Pacientes</h2>
                 <p className="text-sm md:text-lg">Añade tus Pacientes y <span className="font-semibold text-orange-600">Administralos</span></p>
             </div>
             <form onSubmit={handleSubmit} className="p-4 rounded-xl bg-white shadow-xl mb-5">
@@ -128,7 +128,7 @@ export function Form() {
                     <textarea className="border border-slate-300 w-full bg-slate-200 rounded-lg my-2 p-1 text-sm" id="symptoms" placeholder="Sintomas de la mascota" value={patient.symptoms} onChange={handleChange}></textarea>
                 </div>
 
-                <input className="mt-3 bg-orange-600 w-full text-center text-white font-semibold uppercase p-2 rounded-lg hover:bg-orange-700 cursor-pointer active:bg-orange-600" type="submit" value={state.idEdit ? "Editar Paciente" : "Agregar Paciente"} />
+                <input className="mt-3 text-sm bg-orange-600 w-full text-center text-white font-semibold uppercase p-2 rounded-lg hover:bg-orange-700 cursor-pointer active:bg-orange-600" type="submit" value={state.idEdit ? "Editar Paciente" : "Agregar Paciente"} />
 
                 {error && <MessageError
                     error={error}

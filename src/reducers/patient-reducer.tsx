@@ -26,6 +26,9 @@ export const initialState: InitialStateProps = {
 export function patientReducer(state: InitialStateProps = initialState, action: PatientActions) {
 
     if (action.type == "add-patient") {
+
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); /* Hace que se vaya al final de la pagina */
+
         return {
             ...state,
             patients: [...state.patients, action.payload.patient]
@@ -33,6 +36,9 @@ export function patientReducer(state: InitialStateProps = initialState, action: 
     }
 
     if (action.type == "clear-list") {
+
+        window.scrollTo({ top: 0, behavior: 'smooth' }); /* Hace que se vaya al inicio de la pagina */
+
         return {
             ...state,
             patients: []
@@ -48,7 +54,7 @@ export function patientReducer(state: InitialStateProps = initialState, action: 
 
     if (action.type == "get-id-edit") {
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' }); /* Hace que se vaya al inicio de la pagina */
 
         return {
             ...state,
@@ -57,6 +63,9 @@ export function patientReducer(state: InitialStateProps = initialState, action: 
     }
 
     if (action.type == "edit-patient") {
+
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); /* Hace que se vaya al final de la pagina */
+
         return {
             ...state,
             patients: state.patients.map(function (patient) {

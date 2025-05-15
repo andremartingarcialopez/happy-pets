@@ -8,16 +8,17 @@ export default function PatientFollowUp() {
 
     return (
         <>
+
             <div className="flex flex-col justify-center items-center space-y-3 mb-5">
-                <h2 className="text-xl md:text-3xl font-bold">Listado de Pacientes</h2>
-                <p className="md:text-lg">Administra tus <span className="font-semibold text-orange-600">Pacientes</span></p>
+                <h2 className="text-2xl md:text-3xl font-bold">Listado de Pacientes</h2>
+                {state.patients.length > 0 ? <p className="md:text-lg">Administra tus <span className="font-semibold text-orange-600">Pacientes</span></p> : <p className="md:text-lg">Nada registrado<span className="font-semibold text-orange-600"></span></p>}
+                
             </div>
 
             {state.patients.length > 0 &&
                 <div className="p-5 bg-white rounded-lg shadow mb-3">
                     <h2 className="text-orange-600 font-bold text-2xl mb-3 border-b-2">Tus Pacientes</h2>
-                    {[...state.patients]
-                    .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)))
+                    {[...state.patients].sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date))) /* Antes de iterar lo ordenamos por fecha */
                     .map(function (patient) {
                         return (
 
@@ -51,7 +52,7 @@ export default function PatientFollowUp() {
                         )
                     })}
 
-                    <button onClick={() => dispatch({ type: "clear-list" })} className="p-2 bg-red-500 text-white uppercase font-semibold w-full rounded-lg mt-3 cursor-pointer hover:bg-red-700 active:bg-red-500">Vaciar Lista</button>
+                    <button onClick={() => dispatch({ type: "clear-list" })} className="p-2 bg-red-500 text-white uppercase font-semibold w-full text-sm rounded-lg mt-3 cursor-pointer hover:bg-red-700 active:bg-red-500">Eliminar Todo</button>
 
                 </div>
             }
